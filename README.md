@@ -16,9 +16,10 @@ Members of the library should be able to search and browse for books by name, au
 - Django
 - HTML
 - CSS
+- Bootstrap 5
 
 ## Contributors
 - Suharda Silva
 - Chamika Kulasekara
 - Sachintha Harshani
-- Rebecca Weeregoda
+- Rebecca Weragoda
