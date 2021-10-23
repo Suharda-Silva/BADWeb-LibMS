@@ -1,13 +1,43 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title%} Login {% endblock%}
 
-{% block content %}
-    {% load static %}
+{% block css %}
     <link rel="stylesheet" href="{% static 'login.css' %}">
+{% endblock %}
+
+{% block content %}
     <!-- All your code goes here -->
 
-    <h1>Working!!!</h1>
+    <!-- name/id: username, password-->
+    <div class="row position-absolute top-50 start-50 translate-middle justify-content-md-center" id=outerbox>
+
+        <div class="text-center">
+            <img src="{% static 'favicon.ico' %}" class="rounded" alt="LibMS" width="150px" height="150px">
+        </div>
+
+        <div class='row' id='loginbox'>
+
+            <form class='mt-5 mb-5' action="Submit">
+                <div class="col mt-5 mb-3">
+                    <input type="text" class="form-control input" name=username id=username placeholder='Username' required>
+                </div>
+
+                <div class="col mb-3">
+                  <input type="password" name="password" id="password" class="form-control input" placeholder="Password" required>
+                </div>
+
+                <div>
+                    <input type="submit" class="btn btn-primary submit" text='Login' id='submit'>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+    
+
 
 
 {% endblock %}
