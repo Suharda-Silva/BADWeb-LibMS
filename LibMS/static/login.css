@@ -1,0 +1,31 @@
+@import 'base.css';
+
+#logo{
+    position: relative;
+    bottom: 20px;
+}
+
+#loginbox{
+    position: relative;
+    background-color: rgb(59, 180, 140);
+    height: 300px;
+    width: 450px;
+    border-radius: 20px;
+    bottom: 80px;
+    z-index: -1;
+}
+
+.input{
+    border-radius: 20px;
+    text-align: center;
+    font-family: 'Comfortaa';
+}
+
+form{
+    text-align: center;
+}
+
+.submit{
+    width: 50%;
+    border-radius: 20px;
+}
