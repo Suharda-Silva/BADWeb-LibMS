@@ -19,7 +19,8 @@
 
         <div class='row' id='loginbox'>
 
-            <form class='mt-5 mb-5' action="Submit">
+            <form class='mt-5 mb-5' action="" method='POST'>
+                {% csrf_token %}
                 <div class="col mt-5 mb-3">
                     <input type="text" class="form-control input" name=username id=username placeholder='Username' required>
                 </div>
@@ -31,13 +32,22 @@
                 <div>
                     <input type="submit" class="btn btn-primary submit" text='Login' id='submit'>
                 </div>
-
             </form>
 
         </div>
     </div>
-    
 
+    
+    <div class="alert-box">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-danger" role="alert"> 
+                    {{ message }} 
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
 
 
 {% endblock %}
