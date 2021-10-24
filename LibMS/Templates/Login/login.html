@@ -19,7 +19,8 @@
 
         <div class='row' id='loginbox'>
 
-            <form class='mt-5 mb-5' action="Submit">
+            <form class='mt-5 mb-5' action="Submit" method='POST'>
+                {% csrf_token %}
                 <div class="col mt-5 mb-3">
                     <input type="text" class="form-control input" name=username id=username placeholder='Username' required>
                 </div>
