@@ -1,3 +1,25 @@
 from django.shortcuts import render
+from Home.models import Books
 
 # Create your views here.
+DATA_FORMAT = {
+    'id':[],
+    'name':[]
+}
+
+
+def getBooks(request):
+    keyword = request.GET.get('key')
+    
+    ### Database
+    books = Books.objects.filter(title='The Hobbit')
+    ###
+    
+    print(books)
+    
+    data = DATA_FORMAT
+    
+    data['id'].append('01')
+    data['name'].append('Sample Book')
+    
+    return render(request, 'Home/home.html', data)
