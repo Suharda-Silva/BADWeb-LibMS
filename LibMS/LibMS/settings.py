@@ -136,5 +136,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Alter Default Admin Settings
 # Logout Redirect
 
-LOGIN_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
