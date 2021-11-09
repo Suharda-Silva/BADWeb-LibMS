@@ -55,8 +55,12 @@
 
 <h1>Welcome Home!</h1>
 
-{{id}} - {{name}}
+{{books}}
 
-{{user}} {{user.is_superuser}}
+{% for book in books %}
+
+{{book.id}} - {{book.title}} - {{book.ISBN}}
+
+{% endfor %}
 
 {% endblock %}
