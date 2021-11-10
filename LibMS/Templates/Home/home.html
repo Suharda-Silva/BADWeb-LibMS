@@ -57,10 +57,11 @@
 
 {{books}}
 
-{% for book in books %}
-
-{{book.id}} - {{book.title}} - {{book.ISBN}}
-
-{% endfor %}
+<table>
+    <tr><td><b>id</b></td><td><b>Title</b></td><td><b>Author</b></td><td><b>ISBN</b></td></tr>
+    {% for book in books %}
+    <tr><td>{{book.id}}</td><td>{{book.title}}</td><td>{{book.author}}</td><td>{{book.ISBN}}</td></tr>
+    {% endfor %}
+</table>
 
 {% endblock %}
