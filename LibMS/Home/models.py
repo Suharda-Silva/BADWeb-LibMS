@@ -24,6 +24,7 @@ class Books (models.Model):
                                                 ('jp', 'Japanese'),
                                                 ('ot', 'Other')
                                                     ])
+    ISBN = models.CharField(max_length=15)
     description = models.TextField()
     pages = models.IntegerField()
     availability = models.IntegerField()

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="Authors/Copyright" content="BADWeb">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>LibMS {% block title%} {% endblock%}</title>
         {% load static %}
         <link rel="icon" type="image/jpg" href="{% static 'favicon.ico' %}"/>
-        <title>LibMS {% block title%} {% endblock%}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
         {% block css %}
             <link rel="stylesheet" href="{% static 'base.css' %}">
         {% endblock %}
