@@ -3,17 +3,21 @@
 
 {% block title%} Home {% endblock%}
 
+{% block css %}
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+{% endblock %}
+
 {% block content %}
 
 <nav class="navbar navbar-dark bg-dark rounded flex-row mb-3">
-    <div class="container-fluid col-1">
+    <div class="container-fluid col-2 justify-content-start">
         <span class="navbar-brand" href="#">
         <img src="{% static 'favicon.ico'%}" alt="LibMS" width="30" height="30" class="d-inline-block align-text-top">
         LibMS
         </span>
     </div>
 
-    <div class="col-9">
+    <div class="col-8">
     <ul class="nav justify-content-center">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Home</a>
@@ -41,7 +45,7 @@
             <li><a class="dropdown-item" href="../../accounts/logout/">Logout</a></li>
             <li>
             {% if user.is_superuser %}
-            <a class="dropdown-item" href="../../admin/">Admin Panel</a>
+            <a class="dropdown-item" href="../../admin/" target="_blank">Admin Panel</a>
             {% endif %}
             </li>
         </ul>
@@ -49,18 +53,51 @@
 
 </nav>
 
-<div class="row ">
-
+<div class="row mt-4 justify-content-center mb-3">
+    <form action="/search/" method="get" class="col-6 input-group mb-3 w-50">
+        <input type="text" id="search" name="key" class="form-control rounded-pill search-input" placeholder="Search" aria-label="search" aria-describedby="button-search"">
+        <button class="btn btn-outline-secondary rounded-pill ml-ns search-icon-border" type="submit" id="button-search" data-bs-target="#exampleModal">
+            <i class="bi bi-search">&#8203;</i>
+        </button>
+    </form>
 </div>
 
-<h1>Welcome Home!</h1>
+{% if books %}
+<div class="row mt-4 ps-5 pe-5">
+    <h2 class="mb-3">Results</h2>
+    
+    {% for book in books %} 
+    
 
-
-<table>
-    <tr><td><b>id</b></td><td><b>Title</b></td><td><b>Author</b></td><td><b>ISBN</b></td></tr>
-    {% for book in books %}
-    <tr><td>{{book.id}}</td><td>{{book.title}}</td><td>{{book.author}}</td><td>{{book.ISBN}}</td></tr>
+    <div class="row mb-0">
+        <div class="col-2"><img src="{{book.picture}}" alt="Book Cover" width="75"></div>
+        <blockquote class="col-4 blockquote">
+            <p class="mb-3"><a href="../../book/{{book.id}}">{{book.title}}</a></p>
+            <footer class="blockquote-footer">
+                <cite class="f-medium" title="Source Title">{{book.author}}</cite><br>
+                {% ifnotequal book.availability book.issued %}
+                <span class="badge rounded-pill bg-success f-tiny mt-2">Available</span>
+                {% else %}
+                <span class="badge rounded-pill bg-danger f-tiny">Not Available</span>
+                {% endifnotequal %}
+                <p class="font-weight-light font-italic f-tiny mt-1">ISBN: {{book.ISBN}}</p> 
+            </footer>
+        </blockquote>
+        
+        <div class="col-6 justify-content-start">
+            <p class="text-break">{{book.description}}</p>
+        </div>
+    </div> 
+    <hr>
     {% endfor %}
-</table>
+</div>
+
+{% endif %}
+
+
+  
+            
+
+
 
 {% endblock %}
