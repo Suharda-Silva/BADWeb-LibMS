@@ -20,10 +20,25 @@
 
 {% if books %}
 <div class="row mt-4 ps-5 pe-5">
-    <h2 class="mb-3">Results</h2>
+    <h2 class="mb-3 col">Results</h2>
+    
+    <div class="dropdown col-12">
+        <button class="btn btn-secondary dropdown-toggle float-end" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          Language
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" value="{{lan}} = 'en'">English</a></li>
+          <li><a class="dropdown-item" value="{{lan}} = 'lk'">Sinhala</a></li>
+          <li><a class="dropdown-item" value="{{lan}} = 'tm'">Tamin</a></li>
+        </ul>
+    </div>
     
     {% for book in books %} 
     
+    {% ifequal book.language 'en' %}
+        {{book.language}}
+        {{lan}}
+    {% endifequal %}
 
     <div class="row mb-0">
         <div class="col-2"><img src="{{book.picture}}" alt="Book Cover" width="75"></div>

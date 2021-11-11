@@ -36,3 +36,6 @@ def info(request):
 
 def donate(request):
     return render (request, 'AboutUs/donate.html')
+
+def category(request):
+    return render (request, 'Home/category.html')
