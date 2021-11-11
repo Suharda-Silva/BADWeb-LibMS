@@ -20,25 +20,39 @@
 
 {% if books %}
 <div class="row mt-4 ps-5 pe-5">
-    <h2 class="mb-3 col">Results</h2>
-    
-    <div class="dropdown col-12">
-        <button class="btn btn-secondary dropdown-toggle float-end" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-          Language
+    <h2 class="mb-4 col">Results</h2>
+
+    <div class="dropdown col-2 mb-3">
+        <button class="btn btn-light dropdown-toggle" type="button" id="category" data-bs-toggle="dropdown" aria-expanded="false">
+          Category
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item" value="{{lan}} = 'en'">English</a></li>
-          <li><a class="dropdown-item" value="{{lan}} = 'lk'">Sinhala</a></li>
-          <li><a class="dropdown-item" value="{{lan}} = 'tm'">Tamin</a></li>
+            <li>
+            {% for c in cat %}
+            <a class="dropdown-item" href="/search/?search={{search}}&lang={{choice_lang}}&cat={{c.0}}">{{c.1}}</a>
+            {% endfor %}
+            </li>
         </ul>
     </div>
     
-    {% for book in books %} 
+    <div class="dropdown col-1 mb-3">
+        <button class="btn btn-light dropdown-toggle float-end" type="button" id="language" data-bs-toggle="dropdown" aria-expanded="false">
+          Language
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li>
+            {% for i in lang %}
+            <a class="dropdown-item" href="/search/?search={{search}}&lang={{i.0}}">{{i.1}}</a>
+            {% endfor %}
+            </li>
+        </ul>
+    </div>
     
-    {% ifequal book.language 'en' %}
-        {{book.language}}
-        {{lan}}
-    {% endifequal %}
+    {% for book in books %}
+    
+    {% if book.language in choice_lang %}
+    {% if book.category in choice_cat %}        
+    
 
     <div class="row mb-0">
         <div class="col-2"><img src="{{book.picture}}" alt="Book Cover" width="75"></div>
@@ -60,8 +74,11 @@
         </div>
     </div> 
     <hr>
+    {% endif %}
+    {% endif %}
     {% endfor %}
 </div>
+
 
 {% endif %}
 

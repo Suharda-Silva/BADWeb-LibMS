@@ -14,16 +14,36 @@ def home (request):
 
 # Create your views here.
 def getBooks(request):
-    keyword = request.GET.get('search')
+    keyword = request.GET['search']
+    
+    lang = Books._meta.get_field('language')
+    cat = Books._meta.get_field('category')
+    
+    try: 
+        choice_lang = request.GET['lang']
+    except:
+        choice_lang = [l[0] for l in lang.choices]
+        
+    try: 
+        choice_cat = request.GET['cat']
+    except:
+        choice_cat = [l[0] for l in cat.choices]
+        
+    print(keyword, choice_lang, choice_cat)
     
     queries = []
+    
+    
     queries.append(Books.objects.filter(title__icontains=keyword))
     queries.append(Books.objects.filter(author__icontains=keyword))
     queries = [query for search in queries for query in search if query]
     #available = [(book.availability - book.issued) for book in queries]
+    print('run')
+
     
     #data = {'books': queries, 'available':  available}
-    data = {'books': queries}
+    data = {'books': queries, 'lang': lang.choices, 'cat': cat.choices, 
+            'choice_lang': choice_lang, 'choice_cat': choice_cat, 'search': keyword}
     
     return render (request, 'Home/home.html', data)
 
@@ -38,4 +58,9 @@ def donate(request):
     return render (request, 'AboutUs/donate.html')
 
 def category(request):
-    return render (request, 'Home/category.html')
+    
+    lang = Books._meta.get_field('language')
+    
+    data = {'lang': lang.choices}
+    
+    return render (request, 'Home/category.html', data)
