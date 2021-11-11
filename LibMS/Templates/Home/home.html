@@ -57,7 +57,7 @@
     <div class="row mb-0">
         <div class="col-2"><img src="{{book.picture}}" alt="Book Cover" width="75"></div>
         <blockquote class="col-4 blockquote">
-            <p class="mb-3"><a href="../../book/{{book.id}}">{{book.title}}</a></p>
+            <p class="mb-3"><a href="../../book/?id={{book.id}}">{{book.title}}</a></p>
             <footer class="blockquote-footer">
                 <cite class="f-medium" title="Source Title">{{book.author}}</cite><br>
                 {% ifnotequal book.availability book.issued %}
@@ -79,10 +79,32 @@
     {% endfor %}
 </div>
 
+{% elif selected %}
+
+<h1 class="mb-4 f-Calibry">{{selected.title}}</h1>
+
+
+
+
+<table class="row f-Calibry">
+    <tr>
+        <td rowspan="7"><img src = "{{selected.picture}}" alt="Cover Image" width="70%"></td>
+        <td>
+            <tr><td class="p-2 align-top fs-5"><b>Author :</b></td><td class="p-2 align-top fs-5">{{selected.author}}</td></tr>
+            <tr><td class="p-2 align-top fs-5"><b>Year :</b></td><td class="p-2 align-top fs-5">{{selected.year}}</td></tr>
+            <tr><td class="p-2 align-top fs-5"><b>Language :</b></td><td class="p-2 align-top fs-5">{{lang}}</td></tr>
+            <tr><td class="p-2 align-top fs-5"><b>Category :</b></td><td class="p-2 align-top fs-5">{{cat}}</td></tr>
+            <tr><td class="p-2 align-top fs-5"><b>Pages :</b></td><td class="p-2 align-top fs-5">{{selected.pages}}</td></tr>
+            <tr>
+                <td class="p-2 align-top fs-7 font-monospace"><b>ISBN :</b></td><td class="p-2 align-top fs-7 font-monospace">{{selected.ISBN}}</td>
+            </tr>
+        </td>
+    </tr>
+</table>
+<div class="row mt-3"><p class="description">{{selected.description}}</p></div>
+
 
 {% endif %}
-
-
   
             
 

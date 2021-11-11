@@ -41,3 +41,13 @@ a{
     text-decoration: none;
     color: rgb(0, 0, 0);
 }
+.description{
+    text-align: justify;
+}
+.description::first-letter{
+    font-size: 150%;
+    font-family: 'Calibry';
+}
+.f-Calibry{
+    font-family: 'Calibry';
+}
