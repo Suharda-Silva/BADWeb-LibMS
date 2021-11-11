@@ -20,7 +20,7 @@ from Home import urls as homeurls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(loginurls)),
-    path('search/', include(homeurls)),
+    path('login/', include(loginurls)),
+    path('', include(homeurls)),
     path('accounts/', include('django.contrib.auth.urls')),
 ]

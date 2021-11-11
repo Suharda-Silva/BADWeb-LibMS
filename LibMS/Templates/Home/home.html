@@ -1,61 +1,17 @@
-{% extends 'base.html' %}
+{% extends 'Home/homeTemplate.html' %}
 {% load static %}
 
 {% block title%} Home {% endblock%}
 
-{% block css %}
-    <link rel="stylesheet" href="{% static 'home.css' %}">
+{% block style %}
+    <!-- <link rel="stylesheet" href="{% static 'home.css' %}"> -->
 {% endblock %}
 
-{% block content %}
-
-<nav class="navbar navbar-dark bg-dark rounded flex-row mb-3">
-    <div class="container-fluid col-2 justify-content-start">
-        <span class="navbar-brand" href="#">
-        <img src="{% static 'favicon.ico'%}" alt="LibMS" width="30" height="30" class="d-inline-block align-text-top">
-        LibMS
-        </span>
-    </div>
-
-    <div class="col-8">
-    <ul class="nav justify-content-center">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Help</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Donate</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"><i>Info</i></a>
-        </li>
-    </ul>
-    </div>
-
-    <div class="col-2 nav-item dropdown d-flex justify-content-end">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="{% static 'user.png'%}" alt="User" width="25" height="25">
-        </a>
-        <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">My Account</a></li>
-            <li><a class="dropdown-item" href="#">Books</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="../../accounts/logout/">Logout</a></li>
-            <li>
-            {% if user.is_superuser %}
-            <a class="dropdown-item" href="../../admin/" target="_blank">Admin Panel</a>
-            {% endif %}
-            </li>
-        </ul>
-    </div>
-
-</nav>
+{% block page-nav-content %}
 
 <div class="row mt-4 justify-content-center mb-3">
     <form action="/search/" method="get" class="col-6 input-group mb-3 w-50">
-        <input type="text" id="search" name="key" class="form-control rounded-pill search-input" placeholder="Search" aria-label="search" aria-describedby="button-search"">
+        <input type="text" id="search" name="search" class="form-control rounded-pill search-input" placeholder="Search" aria-label="search" aria-describedby="button-search"">
         <button class="btn btn-outline-secondary rounded-pill ml-ns search-icon-border" type="submit" id="button-search" data-bs-target="#exampleModal">
             <i class="bi bi-search">&#8203;</i>
         </button>
