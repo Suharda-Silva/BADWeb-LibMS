@@ -25,6 +25,21 @@ class Books (models.Model):
                                                 ('ot', 'Other')
                                                     ])
     ISBN = models.CharField(max_length=15)
+    category = models.CharField(max_length=3, choices=[
+                                                ('ad', 'Adventure'),
+                                                ('cl', 'Classic'),
+                                                ('com', 'Comic'),
+                                                ('edu', 'Education'),
+                                                ('dit', 'Detective'),
+                                                ('fan', 'Fantacy'),
+                                                ('hor', 'Horrer'),
+                                                ('his', 'Historical'),
+                                                ('sh', 'Short Stories'),
+                                                ('kid', 'Kids'),
+                                                ('cb', 'Cook Books'),
+                                                ('nov', 'Novels'),
+                                                ('oth', 'Other')
+                                                    ])
     description = models.TextField()
     pages = models.IntegerField()
     availability = models.IntegerField()
