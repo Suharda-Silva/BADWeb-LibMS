@@ -16,7 +16,7 @@ def login (request):
             djlogin(request, user)
             return redirect('../')
         else:
-            messages.error(request, 'Not a valid Username of Password !')
+            messages.error(request, 'Not a valid Username or Password !')
     else:
         form = AuthenticationForm()
 

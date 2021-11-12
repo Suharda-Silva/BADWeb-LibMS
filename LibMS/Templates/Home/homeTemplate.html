@@ -23,21 +23,23 @@
     <div class="col-8">
     <ul class="nav justify-content-center">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="../../">Home</a>
+          <a class="nav-link active" aria-current="page" href="../../../">Home</a>
         </li>
+        <!--
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="../../category">Categories</a>
+            <a class="nav-link active invisible" aria-current="page" href="../../../category">Categories</a>
         </li>
+        -->
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="../../donate">Donate</a>
+            <a class="nav-link active" aria-current="page" href="../../../donate">Donate</a>
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="infoDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="active">Info</i>
             </a>
             <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="infoDropdownMenuLink">
-                <li><a class="nav-link" href="../../info"><i>Info</i></a></li>
-                <li><a class="nav-link active" aria-current="page" href="../../help"><i>Help</i></a></li>
+                <li><a class="nav-link" href="../../../info"><i>Info</i></a></li>
+                <li><a class="nav-link active" aria-current="page" href="../../../help"><i>Help</i></a></li>
             </ul>
         </li>
     </ul>
@@ -48,13 +50,13 @@
             <img src="{% static 'user.png'%}" alt="User" width="25" height="25">
         </a>
         <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">My Account</a></li>
-            <li><a class="dropdown-item" href="#">Books</a></li>
+            <li><a class="dropdown-item invisible" href="#">My Account</a></li>
+            <li><a class="dropdown-item" href="../../../user/mybooks/">Books</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="../../accounts/logout/">Logout</a></li>
+            <li><a class="dropdown-item" href="../../../accounts/logout/">Logout</a></li>
             <li>
             {% if user.is_superuser %}
-            <a class="dropdown-item" href="../../admin/" target="_blank">Admin Panel</a>
+            <a class="dropdown-item" href="../../../admin/" target="_blank">Admin Panel</a>
             {% endif %}
             </li>
         </ul>

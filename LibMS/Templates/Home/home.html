@@ -84,19 +84,26 @@
 <div class="row">
     <h1 class="col mb-4 f-Calibry">{{selected.title}}</h1>
     <div class="col-2">
+        {% if userBooks %}
+            <span class="mt-2 float-end text-danger"
+            data-bs-toggle="tooltip" data-bs-placement="bottom" title="The Book is Not Available">
+            <i class="bi bi-exclamation-diamond"> Max 3 Books Allowed</i>
+            </span>
+        {% else %}
         {% ifequal selected.availability selected.issued %}
             <button type="submit" class="btn btn-outline-dark mt-2 float-end"
             data-bs-toggle="tooltip" data-bs-placement="bottom" title="The Book is Not Available"
             style="box-shadow:none;" desabled>Reserve</button>
-        {% else %} 
+        {% else %}
             <button type="submit" class="btn btn-outline-success mt-2 float-end" style="box-shadow:none;" onclick="location.href='../../book/reserve/?id={{selected.id}}&reserve=True'">Reserve</button>
-        {% endifequal %} 
+        {% endifequal %}
+        {% endif %}
     </div>
 </div>
 
 <table class="row f-Calibry">
     <tr>
-        <td rowspan="7"><img src = "{{selected.picture}}" alt="Cover Image" width="300rem"></td>
+        <td rowspan="7"><img src = "{{selected.picture}}" alt="Cover Image" width="250rem"></td>
         <td>
             <tr><td class="p-2 align-top fs-5"><b>Author :</b></td><td class="p-2 align-top fs-5">{{selected.author}}</td></tr>
             <tr><td class="p-2 align-top fs-5"><b>Year :</b></td><td class="p-2 align-top fs-5">{{selected.year}}</td></tr>
@@ -111,6 +118,13 @@
 </table>
 <div class="row mt-3"><p class="description">{{selected.description}}</p></div>
 
+{% else %}
+
+<div class="row cover">
+
+    <img src="{% static 'cat.png' %}" alt="Home Cat">
+
+</div>
 
 {% endif %}
   

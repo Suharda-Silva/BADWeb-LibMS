@@ -1,0 +1,10 @@
+
+hr{
+    border-top: 3px solid rgb(44, 44, 44);
+    opacity: 0.9;
+}
+.m-c{
+    list-style:none;
+    position:relative;
+    top:20%;
+}

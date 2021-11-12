@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 import datetime
 
 # Create your models here.
@@ -51,3 +52,16 @@ class Books (models.Model):
     class Meta:
         verbose_name = "Book"
         verbose_name_plural = "Books"
+        
+        
+class UserBook (models.Model):
+    id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    book = models.ForeignKey(Books, to_field='id', verbose_name="book", on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return f"{self.user} - {self.id}"
+
+    class Meta:
+        verbose_name = "UserBook"
+        verbose_name_plural = "UserBooks"

@@ -1,0 +1,40 @@
+{% extends 'Home/homeTemplate.html' %}
+{% load static %}
+
+{% block title%} My Books {% endblock%}
+
+{% block style %}
+    <!--CSS Link-->
+    <link rel="stylesheet" href="{% static 'mybooks.css' %}">
+{% endblock %}
+
+{% block page-nav-content %}
+    <!-- All your code goes here -->
+    <div class="row ps-3">
+        <h2 class="mt-3"> My Books <hr width="20%"></h2> {{error}}
+        
+        <div class="card align-middle">
+            <ul class="list-group list-group-flush">
+                {% for book in books %}
+                <li class="list-group-item pt-2 pb-2">
+                    <b class="m-c">{{book.book}}</b>
+                    <button type="submit" class="btn btn-outline-danger float-end" onclick="location.href='../../../user/mybooks/remove/?id={{book.id}}'">
+                        <i class="bi bi-trash" alt="Trash">&#8203;</i>
+                    </button>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    {% ifnotequal error None %}
+
+    {{error}}
+
+    {% endifnotequal %}
+
+
+{% block scripts %}
+    <!--JS Files-->
+{% endblock %}
+{% endblock %}
