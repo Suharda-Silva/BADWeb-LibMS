@@ -1,0 +1,57 @@
+{% extends 'Home/homeTemplate.html' %}
+{% load static %}
+
+{% block title%} Donate {% endblock%}
+
+{% block style %}
+    <!--CSS Link-->
+     <link rel="stylesheet" href="{% static 'donate.css' %}">
+{% endblock %}
+
+{% block page-nav-content %}
+    <!-- All your code goes here -->
+    <div class="col-md-4">
+
+<img src="https://www.milibraries.org/assets/images/Support%20MLA%20Donate%20banner%20image.jpg" alt="Cover"  height="300em" width="300%">
+
+</div>
+<h1 class="title mt-4">
+   Donate to the Library 
+</h1>
+<p class="text1 mt-" style="font-size:17px">We welcome your donation of library materials and are grateful for your generosity. Please make sure that the items you are donating are in good condition, which means that the materials have covers (books) or cases (audio) and are in usable condition free from mildew, insects, strong odors and other damage.</p>
+
+<h5 class="title2 mt-4"> We accept the following donations: </h5>
+
+<ul>
+    <li>Books (In good condition with no broken bindings, missing pages)</li>
+    <li>Music or Audio CDs</li>
+    <li>Gaming Systems and Video Games</li>
+    <li>DVDs</li>
+    <li>Popular magazines  </li>
+    <li>Newspapers</li>
+</ul>
+
+<h5 class="title3 mt-4">
+We no longer accept the following donations:
+</h5>
+<ul>
+<li>Monitory donations</li>
+<li>VHS cassettes</li>
+<li>Audio cassettes (books or music)</li>
+<li>Encyclopedias and reference books over 5 years old</li>
+<li>Items which are unhealthy to handle, have an odor, are dirty, moldy, burnt, chewed, or wet</i>
+</ul>
+<h5 class="title4 mt-4">
+How to Give:
+</h5>
+<p> Donations are accepted at our library location. If you have a small number of items totaling no more than three boxes or bags, you may drop off your donation Monday-Friday between 09:00 a.m.-3:00 p.m. without an appointment. If you have a larger number of items greater than three boxes or bags, or heavier items that require assistance, a scheduled appointment is required to drop off donations. Appointments can be made by calling the library.</p>
+<p> All accepted donations become the sole property of the library and cannot be returned to the donor.</p>
+<h3 class="text1 mt-5 mb-5">
+Thank you for your generosity!
+</h3>
+
+
+{% block scripts %}
+    <!--JS Files-->
+{% endblock %}
+{% endblock %}

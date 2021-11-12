@@ -1,0 +1,62 @@
+@import 'base.css';
+/*@import url(https://use.fontawesome.com/releases/v5.15.4/css/all.css);*/
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css");
+
+
+.ml-ns {
+    margin-left: -2.599rem !important;
+}
+.search-icon-border {
+    border-color: #cacaca !important;
+    position: relative !important;
+    z-index: 2 !important;
+}
+.search-input{
+    position: relative !important;
+    z-index: 1 !important;
+}
+.btn-outline-secondary:hover{
+    background-color: rgba(202, 202, 202, 0.801);
+}
+.btn-outline-secondary:active{
+    background-color:rgb(59, 180, 140);
+}
+.f-tiny{
+    font-size: 0.8rem;
+}
+.f-medium{
+    font-size: 1rem;
+}
+.text-break{
+    text-align: justify;
+    height: 110px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.text-break::first-letter{
+    font-size: 150%;
+    font-family: 'Calibry';
+}
+a{
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+.description{
+    text-align: justify;
+}
+.description::first-letter{
+    font-size: 150%;
+    font-family: 'Calibry';
+}
+.f-Calibry{
+    font-family: 'Calibry';
+}
+.btn-outline-dark:hover{
+    background-color: transparent !important;
+    color: black;
+}
+.cover{
+    height: 34rem;
+    overflow: hidden;
+    position: relative;
+}

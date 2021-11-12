@@ -1,66 +1,135 @@
-{% extends 'base.html' %}
+{% extends 'Home/homeTemplate.html' %}
 {% load static %}
 
 {% block title%} Home {% endblock%}
 
-{% block content %}
+{% block style %}
+    <!-- <link rel="stylesheet" href="{% static 'home.css' %}"> -->
+{% endblock %}
 
-<nav class="navbar navbar-dark bg-dark rounded flex-row mb-3">
-    <div class="container-fluid col-1">
-        <span class="navbar-brand" href="#">
-        <img src="{% static 'favicon.ico'%}" alt="LibMS" width="30" height="30" class="d-inline-block align-text-top">
-        LibMS
-        </span>
-    </div>
+{% block page-nav-content %}
 
-    <div class="col-9">
-    <ul class="nav justify-content-center">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Help</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Donate</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"><i>Info</i></a>
-        </li>
-    </ul>
-    </div>
+<div class="row mt-4 justify-content-center mb-3">
+    <form action="/search/" method="get" class="col-6 input-group mb-3 w-50">
+        <input type="text" id="search" name="search" class="form-control rounded-pill search-input" placeholder="Search" aria-label="search" aria-describedby="button-search"">
+        <button class="btn btn-outline-secondary rounded-pill ml-ns search-icon-border" type="submit" id="button-search" data-bs-target="#exampleModal" style="box-shadow:none;">
+            <i class="bi bi-search">&#8203;</i>
+        </button>
+    </form>
+</div>
 
-    <div class="col-2 nav-item dropdown d-flex justify-content-end">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="{% static 'user.png'%}" alt="User" width="25" height="25">
-        </a>
-        <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">My Account</a></li>
-            <li><a class="dropdown-item" href="#">Books</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="../../accounts/logout/">Logout</a></li>
+{% if books %}
+<div class="row mt-4 ps-5 pe-5">
+    <h2 class="mb-4 col">Results</h2>
+
+    <div class="dropdown col-2 mb-3">
+        <button class="btn btn-light dropdown-toggle" type="button" id="category" data-bs-toggle="dropdown" aria-expanded="false">
+          Category
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
             <li>
-            {% if user.is_superuser %}
-            <a class="dropdown-item" href="../../admin/">Admin Panel</a>
-            {% endif %}
+            {% for c in cat %}
+            <a class="dropdown-item" href="/search/?search={{search}}&lang={{choice_lang}}&cat={{c.0}}">{{c.1}}</a>
+            {% endfor %}
             </li>
         </ul>
     </div>
+    
+    <div class="dropdown col-1 mb-3">
+        <button class="btn btn-light dropdown-toggle float-end" type="button" id="language" data-bs-toggle="dropdown" aria-expanded="false">
+          Language
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li>
+            {% for i in lang %}
+            <a class="dropdown-item" href="/search/?search={{search}}&lang={{i.0}}">{{i.1}}</a>
+            {% endfor %}
+            </li>
+        </ul>
+    </div>
+    
+    {% for book in books %}
+    
+    {% if book.language in choice_lang %}
+    {% if book.category in choice_cat %}        
+    
 
-</nav>
+    <div class="row mb-0">
+        <div class="col-2"><img src="{{book.picture}}" alt="Book Cover" width="75"></div>
+        <blockquote class="col-4 blockquote">
+            <p class="mb-3"><a href="../../book/?id={{book.id}}">{{book.title}}</a></p>
+            <footer class="blockquote-footer">
+                <cite class="f-medium" title="Source Title">{{book.author}}</cite><br>
+                {% ifnotequal book.availability book.issued %}
+                <span class="badge rounded-pill bg-success f-tiny mt-2">Available</span>
+                {% else %}
+                <span class="badge rounded-pill bg-danger f-tiny">Not Available</span>
+                {% endifnotequal %}
+                <p class="font-weight-light font-italic f-tiny mt-1">ISBN: {{book.ISBN}}</p> 
+            </footer>
+        </blockquote>
+        
+        <div class="col-6 justify-content-start">
+            <p class="text-break">{{book.description}}</p>
+        </div>
+    </div> 
+    <hr>
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+</div>
 
-<div class="row ">
+{% elif selected %}
+
+<div class="row">
+    <h1 class="col mb-4 f-Calibry">{{selected.title}}</h1>
+    <div class="col-2">
+        {% if userBooks %}
+            <span class="mt-2 float-end text-danger"
+            data-bs-toggle="tooltip" data-bs-placement="bottom" title="The Book is Not Available">
+            <i class="bi bi-exclamation-diamond"> Max 3 Books Allowed</i>
+            </span>
+        {% else %}
+        {% ifequal selected.availability selected.issued %}
+            <button type="submit" class="btn btn-outline-dark mt-2 float-end"
+            data-bs-toggle="tooltip" data-bs-placement="bottom" title="The Book is Not Available"
+            style="box-shadow:none;" desabled>Reserve</button>
+        {% else %}
+            <button type="submit" class="btn btn-outline-success mt-2 float-end" style="box-shadow:none;" onclick="location.href='../../book/reserve/?id={{selected.id}}&reserve=True'">Reserve</button>
+        {% endifequal %}
+        {% endif %}
+    </div>
+</div>
+
+<table class="row f-Calibry">
+    <tr>
+        <td rowspan="7"><img src = "{{selected.picture}}" alt="Cover Image" width="250rem"></td>
+        <td>
+            <tr><td class="p-2 align-top fs-5"><b>Author :</b></td><td class="p-2 align-top fs-5">{{selected.author}}</td></tr>
+            <tr><td class="p-2 align-top fs-5"><b>Year :</b></td><td class="p-2 align-top fs-5">{{selected.year}}</td></tr>
+            <tr><td class="p-2 align-top fs-5"><b>Language :</b></td><td class="p-2 align-top fs-5">{{lang}}</td></tr>
+            <tr><td class="p-2 align-top fs-5"><b>Category :</b></td><td class="p-2 align-top fs-5">{{cat}}</td></tr>
+            <tr><td class="p-2 align-top fs-5"><b>Pages :</b></td><td class="p-2 align-top fs-5">{{selected.pages}}</td></tr>
+            <tr>
+                <td class="p-2 align-top fs-7 font-monospace"><b>ISBN :</b></td><td class="p-2 align-top fs-7 font-monospace">{{selected.ISBN}}</td>
+            </tr>
+        </td>
+    </tr>
+</table>
+<div class="row mt-3"><p class="description">{{selected.description}}</p></div>
+
+{% else %}
+
+<div class="row cover">
+
+    <img src="{% static 'cat.png' %}" alt="Home Cat">
 
 </div>
 
-<h1>Welcome Home!</h1>
+{% endif %}
+  
+            
 
 
-<table>
-    <tr><td><b>id</b></td><td><b>Title</b></td><td><b>Author</b></td><td><b>ISBN</b></td></tr>
-    {% for book in books %}
-    <tr><td>{{book.id}}</td><td>{{book.title}}</td><td>{{book.author}}</td><td>{{book.ISBN}}</td></tr>
-    {% endfor %}
-</table>
 
 {% endblock %}
