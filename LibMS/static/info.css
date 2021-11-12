@@ -1,5 +1,5 @@
-figcaption {
-    font-size: 5rem;
+.figure-caption {
+    font-size: 1.3rem;
     font-family:'Times New Roman', Times, serif;
     padding : 2px;
     text-align: center;
