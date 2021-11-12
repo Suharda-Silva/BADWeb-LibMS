@@ -12,7 +12,7 @@
 <div class="row mt-4 justify-content-center mb-3">
     <form action="/search/" method="get" class="col-6 input-group mb-3 w-50">
         <input type="text" id="search" name="search" class="form-control rounded-pill search-input" placeholder="Search" aria-label="search" aria-describedby="button-search"">
-        <button class="btn btn-outline-secondary rounded-pill ml-ns search-icon-border" type="submit" id="button-search" data-bs-target="#exampleModal">
+        <button class="btn btn-outline-secondary rounded-pill ml-ns search-icon-border" type="submit" id="button-search" data-bs-target="#exampleModal" style="box-shadow:none;">
             <i class="bi bi-search">&#8203;</i>
         </button>
     </form>
@@ -81,10 +81,12 @@
 
 {% elif selected %}
 
-<h1 class="mb-4 f-Calibry">{{selected.title}}</h1>
-
-
-
+<div class="row">
+    <h1 class="col mb-4 f-Calibry">{{selected.title}}</h1>
+    <div class="col-2">
+        <button type="button" class="btn btn-outline-success mt-2 float-end" style="box-shadow:none;" href="../../reserve">Reserve</button>
+    </div>
+</div>
 
 <table class="row f-Calibry">
     <tr>

@@ -51,3 +51,7 @@ a{
 .f-Calibry{
     font-family: 'Calibry';
 }
+.btn-noglow:active{
+    box-shadow: none !important;
+    background-color: aqua !important;
+}
