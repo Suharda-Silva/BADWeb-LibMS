@@ -51,3 +51,7 @@ a{
 .f-Calibry{
     font-family: 'Calibry';
 }
+.btn-outline-dark:hover{
+    background-color: transparent !important;
+    color: black;
+}

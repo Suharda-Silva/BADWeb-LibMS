@@ -76,3 +76,15 @@ def selectedBook(request):
     data = {'selected': book[0], 'lang': lang_long[lang_id], 'cat': cat_long[cat_id]}
     
     return render (request, 'Home/home.html', data)
+
+
+def reserveBook(request):
+    reserve = request.GET['reserve']
+    
+    if reserve:
+        id = request.GET['id']
+        book = Books.objects.filter(id=id)[0]
+        book.issued += 1
+        book.save()
+    
+    return selectedBook(request)
